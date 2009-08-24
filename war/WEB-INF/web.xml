@@ -3,16 +3,16 @@
 	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<servlet>
-		<servlet-name>GaeTest1</servlet-name>
-		<servlet-class>com.nileshk.gae.GaeTest1Servlet</servlet-class>
+		<servlet-name>WriteServlet</servlet-name>
+		<servlet-class>com.nileshk.gae.WriteServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>ControlTest</servlet-name>
 		<servlet-class>com.nileshk.gae.ControlServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>GaeTest1</servlet-name>
-		<url-pattern>/gaetest1</url-pattern>
+		<servlet-name>WriteServlet</servlet-name>
+		<url-pattern>/write</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ControlTest</servlet-name>

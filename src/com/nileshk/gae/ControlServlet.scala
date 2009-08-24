@@ -52,7 +52,7 @@ class ControlServlet extends HttpServlet {
     val resultsArray = results.toArray
     val cards : List[FlashCard] = List.fromArray(resultsArray).asInstanceOf[List[FlashCard]]
     if (!cards.isEmpty) {
-      val output = for (card <- cards) yield card.getQuestion() + ":" + card.getAnswer()
+      val output = for (card <- cards) yield card.question + ":" + card.answer
       output.mkString("\n")
     } else {
       "not implemented yet"
