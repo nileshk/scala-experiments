@@ -4,3 +4,4 @@ classes
 lib
 appengine-generated
 *.class
+.DS_Store
