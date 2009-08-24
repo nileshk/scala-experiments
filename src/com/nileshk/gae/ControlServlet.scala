@@ -48,6 +48,11 @@ class ControlServlet extends HttpServlet {
     <html>
   	  <head><title>Flash Cards</title></head>
   	  <body>
+  	  	<form>
+  	       Question: <input type="text" id="question" name="q" /><br />
+           Answer <input type="text" name="a" /><br />
+           <input type="submit" value="Submit" /><br />
+        </form>
   	    <ul>
   	  	{  
   	  	  for (card <- cards) 
@@ -55,7 +60,12 @@ class ControlServlet extends HttpServlet {
   	  		  	<li>Question: { card.question }, Answer: { card.answer }</li>
   	  	}
   	  	</ul>
-  	  </body>
+  	  	<script language="javascript" type="text/javascript">
+  	  		<![CDATA[
+  	  		document.getElementById('question').focus();
+  	  		]]>
+		</script>
+  	  </body>     
   	</html>
   
   
