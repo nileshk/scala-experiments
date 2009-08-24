@@ -6,6 +6,9 @@ import scala.collection.mutable.{Map => MMap}
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+/*
+ * Very simple servlet that writes to database using JDO
+ */
 class WriteServlet extends HttpServlet {
 
   override def doGet(req : HSReq, resp : HSResp) = doPost(req, resp)
@@ -33,6 +36,6 @@ class WriteServlet extends HttpServlet {
     
     println("Finished")
   }
-  
+
   
 }
