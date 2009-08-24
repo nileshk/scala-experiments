@@ -1,0 +1,21 @@
+<!DOCTYPE web-app 
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <servlet>
+    <servlet-name>MyApp</servlet-name>
+    <servlet-class>DispatchServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ControlTest</servlet-name>
+    <servlet-class>ControlServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyApp</servlet-name>
+    <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControlTest</servlet-name>
+    <url-pattern>/control/*</url-pattern>
+  </servlet-mapping>
+</web-app>
