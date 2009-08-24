@@ -45,6 +45,8 @@ class ControlServlet extends HttpServlet {
   })
   
   map("/cards") (request => {
+	trySave(request)
+    
     val pm = PMF.get().getPersistenceManager()
     val fc = new FlashCard("test", "blah")
     val query = pm.newQuery(classOf[FlashCard])
@@ -58,6 +60,22 @@ class ControlServlet extends HttpServlet {
       "not implemented yet"
     }
   })
+  
+  def trySave(req: HSReq): Unit = {
+    val question = req.getParameter("q").asInstanceOf[String]
+    val answer = req.getParameter("a").asInstanceOf[String]
+    val pm = PMF.get().getPersistenceManager()
+    
+	if (question != null && answer != null 
+		&& question.length() > 0 && answer.length() > 0) {
+		val card = new FlashCard(question, answer)
+		try {
+		  pm.makePersistent(card)
+		} finally {
+		  pm.close();
+		}
+	}
+  }
 
 }
 
