@@ -43,6 +43,21 @@ class ControlServlet extends HttpServlet {
   map("/another") (request => {
     "another"
   })
+
+  def cardTemplate(cards: List[FlashCard]) = 
+    <html>
+  	  <head><title>Flash Cards</title></head>
+  	  <body>
+  	    <ul>
+  	  	{  
+  	  	  for (card <- cards) 
+  	  		  yield   
+  	  		  	<li>Question: { card.question }, Answer: { card.answer }</li>
+  	  	}
+  	  	</ul>
+  	  </body>
+  	</html>
+  
   
   map("/cards") (request => {
 	trySave(request)
@@ -54,8 +69,9 @@ class ControlServlet extends HttpServlet {
     val resultsArray = results.toArray
     val cards : List[FlashCard] = List.fromArray(resultsArray).asInstanceOf[List[FlashCard]]
     if (!cards.isEmpty) {
-      val output = for (card <- cards) yield card.question + ":" + card.answer
-      output.mkString("\n")
+      //val output = for (card <- cards) yield card.question + ":" + card.answer
+      //output.mkString("\n")
+      cardTemplate(cards).toString
     } else {
       "not implemented yet"
     }
