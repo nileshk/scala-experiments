@@ -12,7 +12,7 @@ class FlashCardServlet extends MappingServlet {
     <html>
   	  <head><title>Flash Cards</title></head>
   	  <body>
-  	  	<form>
+  	  	<form method="POST">
   	       Question: <input type="text" id="question" name="q" /><br />
            Answer <input type="text" name="a" /><br />
            <input type="submit" value="Submit" /><br />
