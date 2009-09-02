@@ -5,6 +5,7 @@ import javax.servlet.http.{HttpServlet,
 import scala.collection.mutable.{Map => MMap}
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import scala.collection.jcl.Conversions.convertList;
 
 class FlashCardServlet extends MappingServlet {
 
@@ -39,9 +40,7 @@ class FlashCardServlet extends MappingServlet {
     val pm = PMF.get().getPersistenceManager()
     val fc = new FlashCard("test", "blah")
     val query = pm.newQuery(classOf[FlashCard])
-    val results = query.execute().asInstanceOf[java.util.List[FlashCard]]
-    val resultsArray = results.toArray
-    val cards : List[FlashCard] = List.fromArray(resultsArray).asInstanceOf[List[FlashCard]]
+    val cards : List[FlashCard] = query.execute().asInstanceOf[java.util.List[FlashCard]].toList
     if (!cards.isEmpty) {
       //val output = for (card <- cards) yield card.question + ":" + card.answer
       //output.mkString("\n")
