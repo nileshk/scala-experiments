@@ -5,10 +5,6 @@ import com.nileshk.jdbc._
 import java.sql._
 
 class MetaDataTest extends JUnit3Suite with Checkers {
-  def testItPlease() {
-    assert(true === true)
-  }
-
   def testDbMetaData() {
     Class.forName("org.postgresql.Driver")
     val connection = DriverManager.getConnection(
