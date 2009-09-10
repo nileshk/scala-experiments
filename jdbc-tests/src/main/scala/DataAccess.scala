@@ -13,7 +13,6 @@ class DataAccess(connection: Connection) {
       new Select(connection, x)
     }
   }
-  
 }
 
 class Select(connection: Connection, selectString: String) {
@@ -23,7 +22,6 @@ class Select(connection: Connection, selectString: String) {
     new SelectFrom(connection, this, fromString)
   }
 
-  def * = new SelectFrom(connection, this, "*")
 }
 
 class SelectFrom(connection: Connection, select: Select, fromString: String) {
@@ -34,8 +32,9 @@ class SelectFrom(connection: Connection, select: Select, fromString: String) {
     new SelectFromWhere(connection, this, whereString)
   }
 
-//  def orderBy(orderByString: String): SelectFromOrderBy = {
-//  }
+  def orderBy(orderByString: String): SelectFromOrderBy = {
+    new SelectFromOrderBy(connection, this, orderByString)
+  }
 }
 
 class SelectFromWhere(
@@ -44,15 +43,25 @@ class SelectFromWhere(
   whereString: String) {
 
   override def toString: String = selectFrom + " where " + whereString
+
+  def orderBy(orderByString: String): SelectFromWhereOrderBy = {
+    new SelectFromWhereOrderBy(connection, this, orderByString)
+  }
 }
-/*
+
 class SelectFromOrderBy(
   connection: Connection, 
   selectFrom: SelectFrom, 
   orderByString: String) {
 
-  val sql = selectFrom.sql + " order by " + orderByString
-  
-  def exec = DataAccess.doSelect(connection, sql)
+  override def toString: String = selectFrom + " order by " + orderByString
 }
-*/
+
+class SelectFromWhereOrderBy(
+  connection: Connection,
+  selectFromWhere: SelectFromWhere,
+  orderByString: String) {
+
+  override def toString: String = selectFromWhere + " order by " + orderByString
+
+}

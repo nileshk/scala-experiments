@@ -21,5 +21,25 @@ class DataAccessTest extends JUnit3Suite with Checkers {
     assert(sql === "select id, title from todo_lists where position > 0")
     connection.close()
   }
-  
+
+  def testSelectFromOrderBy() {
+    val connection = getConnection
+    val select = new DataAccess(connection).select
+    val sql: String =
+      select("id, title") from("todo_lists") orderBy("title") toString()
+    println(sql)
+    assert(sql === "select id, title from todo_lists order by title")
+    connection.close()
+  }
+
+  def testSelectFromWhereOrderBy() {
+    val connection = getConnection
+    val select = new DataAccess(connection).select
+    val sql: String =
+      select("id, title") from("todo_lists") where("position > 0") orderBy("title") toString()
+    println(sql)
+    assert(sql === "select id, title from todo_lists where position > 0 order by title")
+    connection.close()
+  }
+
 }
